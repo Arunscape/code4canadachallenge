@@ -53,7 +53,15 @@ fn main() -> Result<(), Box<dyn std::error::Error + 'static>> {
             });
     }
 
-    println!("{:?}", statistics);
+    for (category, stat) in statistics {
+        println!(
+            "{}:
+    count: {}
+    first_date: {}
+    last_date: {}",
+            category, stat.count, stat.first_date, stat.last_date
+        );
+    }
 
     Ok(())
 }
