@@ -1,10 +1,7 @@
 #![deny(clippy::all)]
 use csv;
 use serde::Deserialize;
-use std::collections::HashMap;
-use std::fs;
-
-const CSV_FILENAME: &'static str = "../C4C-dev-challenge-2018.csv";
+use std::{collections::HashMap, env, fs};
 
 #[derive(Deserialize, Debug)]
 struct BuildingCodeViolationRecord {
@@ -24,7 +21,9 @@ struct ViolationStatistic {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error + 'static>> {
-    let file = fs::File::open(CSV_FILENAME)?;
+    let csv_filename = env::args().nth(1).expect("csv file not specified!");
+
+    let file = fs::File::open(csv_filename)?;
     let mut reader = csv::Reader::from_reader(file);
 
     let mut statistics: HashMap<String, ViolationStatistic> = HashMap::new();

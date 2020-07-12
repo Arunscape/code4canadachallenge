@@ -3,10 +3,25 @@ How to run:
 Dependencies:
   - cargo
 
+The program expects one argument, which is the name of the csv file to process
 ```
 git clone https://github.com/Arunscape/code4canadachallenge.git
 cd code4canadachallenge
-cargo run
+cargo run --release C4C-dev-challenge-2018.csv
+```
+
+### In case you don't have cargo, but you do have docker
+You can compile the program in a docker container
+
+```bash
+docker run --rm --user "$(id -u)":"$(id -g)" -v "$PWD":/usr/src/myapp -w /usr/src/myapp rust:1.44 cargo build --release
+```
+
+The binary will be located at target/release/code4canadachallenge
+So, you can run the following command after
+
+```
+./target/release/code4canadachallenge C4C-dev-challenge-2018.csv
 ```
 
 This program calculates:
