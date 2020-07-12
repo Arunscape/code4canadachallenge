@@ -1,5 +1,5 @@
+#![deny(clippy::all)]
 use csv;
-use csv::StringRecord;
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
